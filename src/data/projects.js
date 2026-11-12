@@ -151,6 +151,7 @@ export const projects = [
     role: 'Hackathon team',
     stack: ['Next.js', 'TypeScript', 'Postgres', 'Claude Haiku', 'Azure Speech'],
     links: [{ label: 'GitHub', href: GH + 'control-room-codriver', primary: true }],
+    cover: { type: 'image', src: 'media/control-room/walkthrough.gif', alt: 'Signing in as operator, opening Orders and picking a blocked Bentley', ar: '16 / 10' },
     context: {
       heading: 'A hundred orders. Which need a person, and why?',
       paragraphs: [
@@ -270,7 +271,7 @@ export const projects = [
     slug: 'curb-floor-check',
     name: 'Curb Floor Check',
     shortName: 'Curb',
-    tagline: 'Every financed car on a dealer’s floor, accounted for without walking the lot.',
+    tagline: 'Every financed car on a dealer’s floor, accounted for without walking the lot. Won the mini hackathon at Netlight Consulting.',
     kind: 'Vision and statistics',
     year: '2026',
     role: 'Hackathon team',
