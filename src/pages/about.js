@@ -14,6 +14,14 @@ export function renderAbout(app) {
           <a class="pill" href="${profile.links.github}" target="_blank" rel="noopener">${icons.github}GitHub</a>
           ${profile.links.linkedin ? `<a class="pill" href="${profile.links.linkedin}" target="_blank" rel="noopener">LinkedIn</a>` : ''}
         </div>
+        ${profile.facts ? `
+        <details class="a-facts" data-reveal style="--d:460ms">
+          <summary><span class="fx-mark" aria-hidden="true"></span>Outside work</summary>
+          <div class="fx-body">
+            <p>${esc(profile.facts.lead)}</p>
+            <dl>${profile.facts.list.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v).replace(/\S+-\S+/g, (w) => `<span class="nw">${w}</span>`)}</dd></div>`).join('')}</dl>
+          </div>
+        </details>` : ''}
       </div>
       <div class="a-side">
         <figure class="polaroid" id="polaroid">

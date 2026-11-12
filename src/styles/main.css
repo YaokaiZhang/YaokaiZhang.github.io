@@ -314,6 +314,27 @@ ul, ol { list-style: none; }
 .a-text p + p { margin-top: 1em; }
 .a-contact { display: flex; flex-wrap: wrap; gap: 10px; margin-top: clamp(32px, 5vh, 52px); }
 
+/* outside work: folded by default, opens in place */
+.a-facts { margin-top: clamp(22px, 3.5vh, 34px); max-width: 34em; interpolate-size: allow-keywords; }
+.a-facts summary { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; list-style: none; font-size: 15px; font-weight: 500; color: var(--graphite); transition: color .2s; }
+.a-facts summary::-webkit-details-marker { display: none; }
+.a-facts summary:hover, .a-facts[open] summary { color: var(--ink); }
+.fx-mark { position: relative; width: 11px; height: 11px; flex: none; }
+.fx-mark::before, .fx-mark::after { content: ''; position: absolute; left: 0; top: 5px; width: 11px; height: 1.5px; border-radius: 1px; background: currentColor; transition: transform .35s var(--ease-out); }
+.fx-mark::after { transform: rotate(90deg); }
+.a-facts[open] .fx-mark::after { transform: rotate(0deg); }
+.a-facts::details-content { height: 0; overflow: hidden; transition: height .45s var(--ease-out), content-visibility .45s allow-discrete; }
+.a-facts[open]::details-content { height: auto; }
+.fx-body { padding: 14px 0 2px 21px; border-left: 1px solid var(--hair); margin: 12px 0 0 5px; font-size: 15.5px; line-height: 1.5; color: var(--graphite); }
+.fx-body p { color: var(--ink); margin-bottom: 12px; }
+.fx-body dl { display: grid; gap: 6px; margin: 0; }
+.fx-body dl div { display: grid; grid-template-columns: 6.5em minmax(0, 1fr); gap: 12px; }
+.fx-body dt { color: var(--faint); }
+.fx-body dd { margin: 0; color: var(--ink); }
+.fx-body .nw { white-space: nowrap; }
+@media (max-width: 520px) { .fx-body dl div { grid-template-columns: 1fr; gap: 0; } .fx-body dl div + div { margin-top: 6px; } }
+@media (prefers-reduced-motion: reduce) { .a-facts::details-content, .fx-mark::before, .fx-mark::after { transition: none; } }
+
 /* polaroid: tilted print on tape; tilts toward the pointer */
 .a-side { perspective: 900px; padding: 20px 10px 30px; }
 .polaroid {

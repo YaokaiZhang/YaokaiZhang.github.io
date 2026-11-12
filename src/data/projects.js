@@ -187,7 +187,7 @@ export const projects = [
     kind: 'ML research',
     year: '2026',
     role: 'Thesis, Wuhan University',
-    stack: ['PyTorch', 'CosyVoice2', 'Fish-Speech', 'F5-TTS', 'WavLM', 'Whisper'],
+    stack: ['PyTorch', 'Soft-prompt tuning', 'Bayesian inference', 'Effective sample size', 'Scaling laws'],
     links: [
       { label: 'GitHub', href: GH + 'TTS-Context-Lab', primary: true },
       { label: 'Report', href: GH + 'TTS-Context-Lab/blob/main/resource/report.pdf' },
