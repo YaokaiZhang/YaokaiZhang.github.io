@@ -40,7 +40,7 @@ function render() {
       document.title = `${projects.find((p) => p.slug === r.slug).name} — ${profile.name}`;
     } else if (r.page === 'about') {
       cleanup = renderAbout(app);
-      document.title = `${profile.name} — ${profile.role}`;
+      document.title = profile.name;
     } else {
       cleanup = renderHome(app);
       document.title = `Work — ${profile.name}`;

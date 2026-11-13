@@ -2,7 +2,6 @@
 
 export const profile = {
   name: 'Yaokai Zhang',
-  role: 'ML and AI engineer',
   intro: 'ML and AI engineer. Models, data pipelines, agent systems.',
   location: 'Helsinki, Finland',
   links: {
