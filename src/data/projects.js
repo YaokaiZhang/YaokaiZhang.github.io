@@ -16,6 +16,50 @@ const GH = 'https://github.com/YaokaiZhang/';
 
 export const projects = [
   {
+    slug: 'earned-trust',
+    name: 'Earned Trust',
+    tagline: 'A code reviewer for changes written by AI agents. It’s not enough that “an AI reviewer said it’s fine”. Won 3rd place in the Tieto challenge at Junction 2026.',
+    kind: 'Software verification',
+    year: '2026',
+    role: 'Team of four',
+    stack: ['Python', 'C# / .NET', 'Dafny', 'Mutation testing', 'Differential testing', 'Modal'],
+    links: [{ label: 'GitHub', href: GH + 'code-reviewer-junction', primary: true }],
+    cover: { type: 'image', src: 'media/earned-trust/hero.jpg', alt: 'Earned Trust: three dossiers on a terminal screen, keyed high, medium, low and needs owner', ar: '16 / 10' },
+    context: {
+      heading: 'Review the evidence, not the lines.',
+      paragraphs: [
+        'Each AI-made change becomes short claims. Each claim is backed by a real check and scored by a fixed formula; anything users would notice goes to a named owner.',
+      ],
+      facts: [
+        { value: '23', label: 'claims scored across three AI-made fixes' },
+        { value: '11', label: 'sent to a named owner' },
+      ],
+    },
+    pipeline: [
+      { name: 'Claims', text: 'Each change is split into short claims about what it does.' },
+      { name: 'Evidence', text: 'Rebuild and compare, fail-to-pass tests, mutation tests, old-vs-new runs, a Dafny proof.' },
+      { name: 'Score', text: 'A fixed formula scores each claim from its strongest check; the AI never picks the number.' },
+      { name: 'Trace', text: 'The AI explains each decision step by step; a script checks every step against the lines it cites.' },
+      { name: 'Owner gate', text: 'Behaviour users would notice goes to the top committer on those paths, whatever the score.' },
+      { name: 'Receipt', text: 'The owner accepts, rejects or sends back; the reviewer signs.' },
+    ],
+    highlights: [
+      { title: 'Evidence sets the score', text: 'Points per kind of check, −10 if run by hand, capped at 25 if anything contradicts it.' },
+      { metric: '4 of 10', metricLabel: 'new tests on one fix actually prove it', title: 'Tests must fail first', text: 'Every new test also runs on the old code; one that already passed proves nothing.' },
+      { title: 'Proof finds what tests miss', text: 'A Dafny model matched the real code on 3,710 inputs and found one where the fix still crashes.' },
+      { title: 'A high score keeps the question', text: 'Owner questions are set by a rule, not by confidence.' },
+      { title: 'Every number reproducible', text: 'Each evidence file stores the exact command that produced it.' },
+    ],
+    gallery: [
+      { type: 'image', src: 'media/earned-trust/dossier.jpg', alt: 'Dossier for one fix: claims by confidence and a claim that needs an owner', caption: 'A dossier per fix', wide: true },
+      { type: 'image', src: 'media/earned-trust/trace.jpg', alt: 'Step-by-step trace beside the code, each step checked', caption: 'Each decision traced to the code', fit: 'contain', bg: '#f4f2e6' },
+      { type: 'image', src: 'media/earned-trust/tests.jpg', alt: 'New tests: 4 prove the fix, 6 already passed before', caption: 'Which tests prove the fix', fit: 'contain', bg: '#f4f2e6' },
+      { type: 'image', src: 'media/earned-trust/score.jpg', alt: 'Points per kind of evidence', caption: 'Points per kind of evidence', fit: 'contain', bg: '#f4f2e6' },
+      { type: 'image', src: 'media/earned-trust/owner-gate.jpg', alt: 'Claims that need an owner and a signed receipt', caption: 'The owner decides', fit: 'contain', bg: '#f4f2e6' },
+    ],
+  },
+
+  {
     slug: 'rehabflow',
     name: 'RehabFlow',
     tagline: 'A multi-agent rehab assistant that triages safely, remembers each patient and keeps a clinician in the loop.',

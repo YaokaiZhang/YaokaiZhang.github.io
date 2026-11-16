@@ -31,9 +31,9 @@ export function renderHome(app) {
 
       <div class="rail-row">
         <div class="rail" id="rail" role="tablist" aria-label="Projects">
-          ${projects.map((p, i) => `<button role="tab" data-i="${i}" aria-selected="false">${esc(p.shortName || p.name)}</button>`).join('')}
-          <span class="rail-bar" id="rail-bar"></span>
+          ${projects.map((p, i) => `<button role="tab" data-i="${i}" aria-selected="false" aria-label="${esc(p.name)}"><span class="seg" aria-hidden="true"></span><span class="tip" aria-hidden="true">${esc(p.shortName || p.name)}</span></button>`).join('')}
         </div>
+        <span class="rail-count" id="rail-count" aria-hidden="true"></span>
         <div class="rail-arrows">
           <button class="step-btn" id="prev" aria-label="Previous project">${icons.arrowLeft}</button>
           <button class="step-btn step-next" id="next" aria-label="Next project">${icons.arrowRight}</button>
@@ -60,8 +60,7 @@ export function renderHome(app) {
   const metas = [...app.querySelectorAll('#stage-meta > div')];
   const layers = [...app.querySelectorAll('.lens-layer')];
   const tabs = [...app.querySelectorAll('#rail button')];
-  const bar = app.querySelector('#rail-bar');
-  const rail = app.querySelector('#rail');
+  const count = app.querySelector('#rail-count');
   const lens = app.querySelector('#lens');
   let current = -1;
   let busy = 0;
@@ -72,14 +71,6 @@ export function renderHome(app) {
     const max = wrap.clientWidth;
     const w = el.scrollWidth;
     if (w > max) el.style.fontSize = `${parseFloat(getComputedStyle(el).fontSize) * (max / w) * 0.98}px`;
-  }
-
-  function moveBar(i) {
-    const t = tabs[i];
-    bar.style.width = `${t.offsetWidth}px`;
-    bar.style.transform = `translateX(${t.offsetLeft}px)`;
-    const target = t.offsetLeft - rail.clientWidth / 2 + t.offsetWidth / 2;
-    rail.scrollTo({ left: target, behavior: reducedMotion() ? 'auto' : 'smooth' });
   }
 
   function show(i, dir = 1) {
@@ -128,7 +119,7 @@ export function renderHome(app) {
     lens.href = `#/work/${p.slug}`;
     lens.setAttribute('aria-label', `Open the ${p.name} case study`);
     tabs.forEach((t, k) => t.setAttribute('aria-selected', String(k === i)));
-    moveBar(i);
+    count.textContent = `${i + 1} / ${projects.length}`;
   }
 
   const next = () => show(current + 1, 1);
@@ -195,8 +186,10 @@ export function renderHome(app) {
   };
   stage.addEventListener('wheel', onWheel, { passive: false });
 
-  const onResize = () => { moveBar(current); const n = wrap.querySelector('.bigname:not(.is-out)'); if (n) fit(n); };
+  const onResize = () => { const n = wrap.querySelector('.bigname:not(.is-out)'); if (n) fit(n); };
   window.addEventListener('resize', onResize);
+  // the first fit can run on the fallback font; refit once the web font is in
+  document.fonts?.ready.then(onResize);
 
   show(lastIndex, 1);
   const stopVideos = autoplayVideos(app);
