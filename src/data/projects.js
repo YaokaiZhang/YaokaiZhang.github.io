@@ -40,14 +40,17 @@ export const projects = [
       { name: 'Evidence', text: 'Rebuild and compare, fail-to-pass tests, mutation tests, old-vs-new runs, a Dafny proof.' },
       { name: 'Score', text: 'A fixed formula scores each claim from its strongest check; the AI never picks the number.' },
       { name: 'Trace', text: 'The AI explains each decision step by step; a script checks every step against the lines it cites.' },
+      { name: 'Readability', text: 'Static code metrics compare copy-pasted blocks and paths per function before and after; flags point where to look, never move the score.' },
       { name: 'Owner gate', text: 'Behaviour users would notice goes to the top committer on those paths, whatever the score.' },
       { name: 'Receipt', text: 'The owner accepts, rejects or sends back; the reviewer signs.' },
+      { name: 'Learned rules', text: 'Rules learned from the project’s past reviews feed the gate and the flags. People edit them, and every dossier re-scores.' },
     ],
     highlights: [
       { title: 'Evidence sets the score', text: 'Points per kind of check, −10 if run by hand, capped at 25 if anything contradicts it.' },
       { metric: '4 of 10', metricLabel: 'new tests on one fix actually prove it', title: 'Tests must fail first', text: 'Every new test also runs on the old code; one that already passed proves nothing.' },
       { title: 'Proof finds what tests miss', text: 'A Dafny model matched the real code on 3,710 inputs and found one where the fix still crashes.' },
-      { title: 'A high score keeps the question', text: 'Owner questions are set by a rule, not by confidence.' },
+      { metric: '20', metricLabel: 'rules learned from 37 past pull requests', title: 'Rules that evolve with the project', text: 'Mined from maintainer reviews, each with a quote. Reword, add or turn one off, and every dossier re-scores.' },
+      { title: 'Readable today, maintainable later', text: 'On one fix, copy-pasted blocks went 10 → 12 and paths in one function 162 → 166. Flagged, not scored.' },
       { title: 'Every number reproducible', text: 'Each evidence file stores the exact command that produced it.' },
     ],
     gallery: [
@@ -56,6 +59,8 @@ export const projects = [
       { type: 'image', src: 'media/earned-trust/tests.jpg', alt: 'New tests: 4 prove the fix, 6 already passed before', caption: 'Which tests prove the fix', fit: 'contain', bg: '#f4f2e6' },
       { type: 'image', src: 'media/earned-trust/score.jpg', alt: 'Points per kind of evidence', caption: 'Points per kind of evidence', fit: 'contain', bg: '#f4f2e6' },
       { type: 'image', src: 'media/earned-trust/owner-gate.jpg', alt: 'Claims that need an owner and a signed receipt', caption: 'The owner decides', fit: 'contain', bg: '#f4f2e6' },
+      { type: 'image', src: 'media/earned-trust/readability.jpg', alt: 'Readability flags per fix and before-vs-after code metrics', caption: 'Readability flags from static metrics', fit: 'contain', bg: '#f4f2e6' },
+      { type: 'image', src: 'media/earned-trust/rules.jpg', alt: 'Learned rules page: each rule links to the maintainer comments it came from', caption: 'Learned rules, editable', fit: 'contain', bg: '#f4f2e6' },
     ],
   },
 
